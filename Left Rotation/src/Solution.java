@@ -6,12 +6,10 @@ class Result {
 	public static List<Integer> rotateLeft(int d, List<Integer> arr) {
 		// Get 2 sublists, from d to end of list and start of list to d
 		// add both to 2 list
-		List<Integer> list1 = arr.subList(d, arr.size());
-		List<Integer> list2 = arr.subList(0, d);
-		List<Integer> list3 = new ArrayList<Integer>();
-		list3.addAll(list1);
-		list3.addAll(list2);
-		return list3;
+		List<Integer> result = new ArrayList<Integer>();
+		result.addAll(arr.subList(d, arr.size()));
+		result.addAll(arr.subList(0, d));
+		return result;
 	}
 }
 
