@@ -35,7 +35,7 @@ public class Solution {
 						}
 						d = a.charAt(i+repeatA);
 					}
-					System.out.println("repeatA: " + repeatA);
+					//System.out.println("repeatA: " + repeatA);
 					int repeatB = 0;
 					d = c;
 					while (d == Character.toUpperCase(c) || d == c) {
@@ -45,14 +45,14 @@ public class Solution {
 					    	break;
 					    }
 				    	d = b.charAt(j+repeatB);
-						System.out.println("bchar: " + d);
+						//System.out.println("bchar: " + d);
 					}
-					System.out.println("repeatB: " + repeatB);
+					//System.out.println("repeatB: " + repeatB);
 					if (repeatA <= repeatB) {
 						s.append(Character.toUpperCase(c));
 						j++;
 					} else {
-						System.out.println("deleting " + c);
+						//System.out.println("deleting " + c);
 					}
 				}
 			}
@@ -70,7 +70,7 @@ public class Solution {
 		
 	}
 	public static void main (String[] args) throws FileNotFoundException {
-		File file = new File("src/input2.txt");
+		File file = new File("src/input.txt");
 		Scanner scan = new Scanner(file);
 		int N = scan.nextInt();
 		scan.nextLine();
