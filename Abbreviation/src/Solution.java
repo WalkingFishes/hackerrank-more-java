@@ -28,8 +28,11 @@ public class Solution {
 					// if length of substr a > substr b, don't add to s
 					int repeatA = 0;
 					char d = c;
-					while (i+repeatA < a.length()-1 && (d == Character.toUpperCase(c) || d == c)) {
+					while (d == Character.toUpperCase(c) || d == c) {
 						repeatA++;
+						if (i+repeatA == a.length()) {
+							break;
+						}
 						d = a.charAt(i+repeatA);
 					}
 					System.out.println("repeatA: " + repeatA);
