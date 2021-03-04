@@ -22,13 +22,43 @@ public class Solution {
 			if (Character.isUpperCase(c)) {
 				s.append(c);
 				j++;
-			} else if (j < b.length() && b.charAt(j) == Character.toUpperCase(c)) { // a is lowercase
-				s.append(Character.toUpperCase(c));
-				j++;
+			} else if (j < b.length()) { // Not at end of b yet
+				if (b.charAt(j) == Character.toUpperCase(c)) {
+					// Check to see if this is part of consecutive same letters
+					// if length of substr a > substr b, don't add to s
+					int repeatA = 0;
+					char d = c;
+					while (i+repeatA < a.length()-1 && (d == Character.toUpperCase(c) || d == c)) {
+						repeatA++;
+						d = a.charAt(i+repeatA);
+					}
+					System.out.println("repeatA: " + repeatA);
+					int repeatB = 0;
+					d = c;
+					while (d == Character.toUpperCase(c) || d == c) {
+						repeatB++;
+						// If end of line, don't check the next character
+					    if (j+repeatB == b.length()) {
+					    	break;
+					    }
+				    	d = b.charAt(j+repeatB);
+						System.out.println("bchar: " + d);
+					}
+					System.out.println("repeatB: " + repeatB);
+					if (repeatA <= repeatB) {
+						s.append(Character.toUpperCase(c));
+						j++;
+					} else {
+						System.out.println("deleting " + c);
+					}
+				}
 			}
 		}
 //		System.out.println(s);
 		// Check if strings match
+		System.out.println("a: " + a);
+		System.out.println("s: " + s);
+		System.out.println("b: " + b);
 		if (b.contentEquals(s)) {
 			return "YES";
 		} else {
@@ -37,7 +67,7 @@ public class Solution {
 		
 	}
 	public static void main (String[] args) throws FileNotFoundException {
-		File file = new File("src/input.txt");
+		File file = new File("src/input2.txt");
 		Scanner scan = new Scanner(file);
 		int N = scan.nextInt();
 		scan.nextLine();
