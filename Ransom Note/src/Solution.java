@@ -10,23 +10,21 @@ public class Solution {
 
     // Complete the checkMagazine function below.
     static void checkMagazine(String[] magazine, String[] note) {
-//    	System.out.println("Magazine:");
-//    	for (String word : magazine) System.out.print(word + " ");
-//    	System.out.println();
-//    	System.out.println("Note:");
-    	List<String> myList = new ArrayList<>(Arrays.asList(magazine));
-
+    	Arrays.sort(magazine);
+    	Arrays.sort(note);
+    	List<String> myList = new ArrayList<String>(Arrays.asList(magazine));
     	for (String word : note) {
     		if (!myList.contains(word)) {
     			System.out.println("No");
     			return;
     		}
     		myList.remove(word);
-//    		System.out.print(word + "(" + list.contains(word) + ") ");
     	}
-//    	System.out.println();
-    	System.out.println("Yes");
-
+  		System.out.println("Yes");
+//    	if (mySet.containsAll(Arrays.asList(note)))
+//    		System.out.println("Yes");
+//    	else
+//    		System.out.println("No");
     }
 
     public static void main(String[] args) throws FileNotFoundException {
