@@ -1,10 +1,5 @@
 import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
 
 public class Solution {
 
@@ -29,15 +24,27 @@ public class Solution {
     	 *  	 :
     	 *  	 :
     	 *   	0:(N-N-1), 1:(N-N-2), ..., N-1:N-(N-N)
-    	 */
-    	for (int i = s2.length()-1; i >= 0; i--) {
-    		for (int j = 0; (i+j) < s2.length(); j++) {
+//    	 */
+//    	for (int i = s2.length()-1; i >= 0; i--) {
+//    		for (int j = 0; (i+j) < s2.length(); j++) {
 //    			System.out.print("[" + j + ":" + (i+j) + "]: ");
 //    			System.out.println(s2.substring(j, j+i+1) + " " + s1.contains(s2.substring(j, j+i+1)));
-    			if (s1.contains(s2.substring(j, j+i+1))) return "YES";
-    		}
-    	}
-    	return "NO";
+//    			if (s1.contains(s2.substring(j, j+i+1))) return "YES";
+//    		}
+//    	}
+//    	return "NO";
+    	/*
+    	 * A better solution is to just boil the strings down into a set of unique characters and then check for overlap
+    	 * This is much, much faster
+    	 */
+    	Set<String> set1 = new HashSet<String>(Arrays.asList(s1.split("")));
+    	Set<String> set2 = new HashSet<String>(Arrays.asList(s2.split("")));
+//    	for (String s : set1) System.out.println(s);
+    	
+    	Set<String> set3 = new HashSet<String>(set1);
+    	set3.addAll(set2);
+    	return set3.size() == set1.size() + set2.size() ? "NO" : "YES";
+    		
     }
 
 
