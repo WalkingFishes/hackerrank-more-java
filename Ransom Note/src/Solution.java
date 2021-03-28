@@ -1,15 +1,56 @@
 import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the checkMagazine function below.
+    // Do all of the words in note exist in magazine
+
+    /*
+     * Implementation using HashMaps
+     */
     static void checkMagazine(String[] magazine, String[] note) {
+        /*
+         * Put words from magazine into a HashMap with a count of number of occurrences
+         * 
+         * Iterate over note, if it exists in hashmap, decrement count and update entry
+         * If it doesn't exist, display No
+         */
+        HashMap<String, Integer> magazineHash = new HashMap<String, Integer>(magazine.length);
+        for (String word : magazine) {
+            Integer count = magazineHash.get(word);
+            if (count == null) {
+                magazineHash.put(word, 1);
+            } else {
+                magazineHash.put(word, count+1);
+                
+            }
+        }
+        for (String word : note) {
+            Integer count = magazineHash.get(word);
+            if (count == null) {
+                System.out.println("No");
+                return;
+            } else if (count == 1) {
+                magazineHash.remove(word);
+            } else {
+                magazineHash.put(word, count-1);
+            }
+        }
+        System.out.println("Yes");
+
+    }
+
+    /*
+     * Implementation using Arrays and a List
+     */
+    static void checkMagazineList(String[] magazine, String[] note) {
+        /*
+         * Sort both arrays
+         * Create a List(mutable) for magazine words
+         * Iterate over note array, if it exists in magazine, delete it from magazine
+         * since each word can be used only once
+         * At any point a word doesn't exist, display No
+         */
     	Arrays.sort(magazine);
     	Arrays.sort(note);
     	List<String> myList = new ArrayList<String>(Arrays.asList(magazine));
