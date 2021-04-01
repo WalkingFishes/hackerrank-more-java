@@ -1,6 +1,8 @@
-5
-kkkk
+7
+aabbc
+abcdefghhgfedecba
+aabbcd
+aaaabbcc
 abba
 ifailuhkqq
 cdcd
-abcdefghhgfedecba

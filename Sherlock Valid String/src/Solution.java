@@ -10,42 +10,49 @@ public class Solution {
 
     /*
      * Determine if 1 or 0 characters can be removed from String s in order for
-     * s to contain the same frequency of all characters
+     * s to contain the same freqValueuency of all characters
      * Return "YES" if so, otherwise return "NO"
      */
     static String isValid(String s) {
     	/*
-    	 * Iterate through frequency count for each unique letter, as soon as
+    	 * Iterate through freqValueuency count for each unique letter, as soon as
     	 * there is more than one difference in the counts, the string is not valid
     	 */
     	// Approach 1:
     	// Convert String to sorted Array
     	// Convert String to HashSet
-    	// Iterate over HashSet, call Collections.frequency on the Array
+    	// Iterate over HashSet, call Collections.freqValueuency on the Array
     	ArrayList<String> myList = new ArrayList<String>(Arrays.asList(s.split("")));
     	HashSet<String> myHash = new HashSet<String>(myList);
     	
-    	int firstFreq=0;
+    	int firstFreqValue=0;
     	int firstCounter=0;
-    	int secondFreq=0;
+    	int secondFreqValue=0;
     	int secondCounter=0;
 
     	for (String ch : myHash) {
-    	    int freq = Collections.frequency(myList, ch);
-    	    if (firstFreq == 0 || firstFreq == freq) {
-    	        firstFreq = freq;
+    	    int freqValue = Collections.frequency(myList, ch);
+    	    if (firstFreqValue == 0 || firstFreqValue == freqValue) {
+    	        firstFreqValue = freqValue;
     	        firstCounter++;
-    	    } else if (secondFreq == 0 || secondFreq == freq){
-    	        secondFreq = freq;
+    	    } else if (secondFreqValue == 0 || secondFreqValue == freqValue){
+    	        secondFreqValue = freqValue;
     	        secondCounter++;
-    	    } else { // There are 3 frequencies, invalid
+    	    } else { // There are 3 freqValueuencies, invalid
     	        return "NO";
     	    }
-    	    if (firstCounter > 1 && secondCounter > 1) { // There is more than one char to delete, invalid
-    	        return "NO";
-    	    }
+//    	    System.out.println(ch + ": 1f: " + firstFreqValue + "(" + firstCounter + "), 2f: " + secondFreqValue + "(" + secondCounter + ")");
     	}
-    	return "YES";
+        if (firstCounter == 0 || secondCounter == 0) { // All chars with the same count
+            return "YES";
+        }
+        if (firstCounter == 1 && (firstFreqValue == 1 || firstFreqValue - secondFreqValue == 1)) { // Difference in counts == 1
+            return "YES";
+        }
+        if (secondCounter == 1 && (secondFreqValue == 1 || secondFreqValue - firstFreqValue == 1)) { // Difference in counts == 1
+            return "YES";
+        }
+    	return "NO";
     	
     }
 
