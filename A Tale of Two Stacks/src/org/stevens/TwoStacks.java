@@ -13,37 +13,31 @@ import java.util.Stack;
  * For a pop, move the second stack onto the first.
  */
 class MyQueue<T> {
-    private Stack<T> stackStack = new Stack<>();
-    private Stack<T> stackQueue = new Stack<>();
+    private Stack<T> stack = new Stack<>();
+    private Stack<T> queue = new Stack<>();
+
+    private void prepareQueue() {
+        if (queue.empty()) {
+            while (!stack.empty()) {
+                queue.push(stack.pop());
+            }
+        }
+        return;
+    }
     
     public void enqueue(T t) {
-        // Queue is empty, enqueue item directly to it
-        if (stackQueue.empty()) {
-            stackQueue.push(t);
-            System.out.println("Enqueue("+t+") stack:" + stackStack + ", queue:" + stackQueue);
-            return;
-        }
-        // Reverse the queue into a stack so last item can be added
-        while (!stackQueue.empty()) {
-            stackStack.push(stackQueue.pop());
-        }
-        stackStack.push(t);
-        // Reverse the stack back into the queue
-        while (!stackStack.empty()) {
-            stackQueue.push(stackStack.pop());
-        }
-        
-        System.out.println("Enqueue("+t+") stack:" + stackStack + ", queue:" + stackQueue);
-        return;
+        stack.push(t);
+        System.out.println("Enqueue: " + stack + ", " + queue);
     }
-    public void dequeue() {
-        // Just take the top item off the queue
-        stackQueue.pop();
-        System.out.println("Dequeue() " + stackQueue);
-        return;
+    public T dequeue() {
+        prepareQueue();
+        System.out.println("Dequeue: " + stack + ", " + queue);
+        return queue.pop();
     }
     public T peek() {
-        return stackQueue.peek();
+        prepareQueue();
+        System.out.println("Peek: " + stack + ", " + queue);
+        return queue.peek();
     }
 }
 
